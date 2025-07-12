@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/60295fc7eb.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Lab 02 - WanderWorld</title>
+  </head>
+
+  <body class="font-sans bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+      <div
+        class="container mx-auto flex flex-wrap justify-between items-center"
+      >
+        <div class="text-white text-xl font-bold">WanderWorld</div>
+        <button id="menu-btn" class="sm:hidden text-white text-2xl">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul
+          id="menu"
+          class="hidden sm:flex flex-col sm:flex-row sm:space-x-6 w-full sm:w-auto mt-4 sm:mt-0 text-white"
+        >
+          <li class="flex items-center space-x-1">
+            <i class="fa-solid fa-house"></i>
+            <a href="#" class="hover:text-gray-400">Home</a>
+          </li>
+          <li class="flex items-center space-x-1">
+            <i class="fa-solid fa-location-dot"></i>
+            <a href="#" class="hover:text-gray-400">Places</a>
+          </li>
+          <li class="flex items-center space-x-1">
+            <i class="fa-solid fa-image"></i>
+            <a href="#" class="hover:text-gray-400">Gallery</a>
+          </li>
+          <li class="flex items-center space-x-1">
+            <i class="fa-solid fa-phone"></i>
+            <a href="#" class="hover:text-gray-400">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="relative h-96 bg-cover bg-center"
+      style="background-image: url('public/hero_image.jpg')"
+    >
+      <div
+        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="text-white text-center">
+          <h1 class="text-4xl font-bold mb-4">Explore the World</h1>
+          <p class="mb-6">
+            Discover breathtaking destinations and unforgettable experiences.
+          </p>
+          <a
+            href="#"
+            class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition"
+            >Explore Now</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="container mx-auto my-8 px-4">
+      <div class="flex justify-center">
+        <video controls class="w-full max-w-2xl rounded shadow-md">
+          <source src="./public/sample_video.mp4" type="video/mp4" />
+          <track
+            kind="subtitles"
+            src="./public/subtitle.vtt"
+            srclang="en"
+            label="English"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Audio Section -->
+    <section class="container mx-auto my-8 px-4">
+      <div class="flex justify-center">
+        <audio controls class="w-full max-w-2xl">
+          <source src="./public/sample_audio.mp3" type="audio/mp3" />
+          Your browser does not support the audio tag.
+        </audio>
+      </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="container mx-auto my-12 px-4">
+      <h2 class="text-2xl font-bold text-center mb-6">Popular Destinations</h2>
+      <div
+        id="destinations"
+        class="grid grid-cols-1 md:grid-cols-3 gap-6"
+      ></div>
+
+      <!-- Country Template (optional if used in JS) -->
+      <template id="country-template">
+        <div
+          class="bg-white p-4 rounded shadow hover:shadow-lg transition text-center"
+        >
+          <img
+            class="country-flag w-full h-40 object-cover mb-4 rounded"
+            alt="Country Flag"
+          />
+          <h3 class="country-name text-xl font-bold"></h3>
+          <p class="country-capital text-gray-600"></p>
+          <p class="country-region text-gray-600"></p>
+          <p class="country-population text-gray-600"></p>
+        </div>
+      </template>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+      <div
+        class="container mx-auto flex flex-col sm:flex-row justify-between items-center"
+      >
+        <p>&copy; 2025 WanderWorld</p>
+        <div class="mt-2 sm:mt-0 flex items-center space-x-2">
+          <svg
+            class="w-5 h-5 fill-current text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+          >
+            <path
+              d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
+            />
+          </svg>
+          <span>Global Reach</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
