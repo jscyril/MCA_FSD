@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Student Feedback Collection System</title>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold mb-4 text-center">
+        Student Feedback Collection System
+      </h1>
+
+      <div
+        id="welcomeMsg"
+        class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 hidden text-center"
+      >
+        Welcome Back!
+      </div>
+
+      <form
+        id="feedbackForm"
+        class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <div class="mb-4">
+          <label
+            for="fullname"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            required
+            placeholder="Enter your full name"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Enter your email"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            for="department"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Department</label
+          >
+          <select
+            id="department"
+            name="department"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          >
+            <option value="">Select Department</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Business and Management">
+              Business and Management
+            </option>
+            <option value="Psychological Sciences">
+              Psychological Sciences
+            </option>
+            <option value="Mathematics">Mathematics</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <span class="block text-gray-700 text-sm font-bold mb-2">Rating</span>
+          <div class="flex space-x-4">
+            <label class="inline-flex items-center">
+              <input
+                type="radio"
+                class="form-radio"
+                name="rating"
+                value="1"
+                required
+              />
+              <span class="ml-2">1</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="rating" value="2" />
+              <span class="ml-2">2</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="rating" value="3" />
+              <span class="ml-2">3</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="rating" value="4" />
+              <span class="ml-2">4</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="rating" value="5" />
+              <span class="ml-2">5</span>
+            </label>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label
+            for="comments"
+            class="block text-gray-700 text-sm font-bold mb-2"
+            >Comments</label
+          >
+          <textarea
+            id="comments"
+            name="comments"
+            rows="4"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+          <p class="text-right text-gray-600 text-sm mt-1">
+            Character Count: <span id="charCount">0</span>
+          </p>
+        </div>
+        <div class="flex items-center justify-between">
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            id="clearFeedbacks"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Clear All Feedbacks
+          </button>
+        </div>
+      </form>
+
+      <div id="feedbackDisplay" class="grid grid-cols-1 gap-4"></div>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
