@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-4">
+      <h1 class="text-2xl font-bold mb-4 text-center">Social Network Users</h1>
+      <form id="filterForm" class="flex flex-wrap gap-4 mb-6 justify-center">
+        <input
+          type="text"
+          id="name"
+          placeholder="Name"
+          class="border rounded px-2 py-1"
+        />
+        <input
+          type="text"
+          id="city"
+          placeholder="City"
+          class="border rounded px-2 py-1"
+        />
+        <input
+          type="number"
+          id="age"
+          placeholder="Age"
+          class="border rounded px-2 py-1 w-24"
+          min="0"
+        />
+        <input
+          type="text"
+          id="interest"
+          placeholder="Interest"
+          class="border rounded px-2 py-1"
+        />
+        <button
+          type="submit"
+          class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+        >
+          Filter
+        </button>
+        <button
+          type="button"
+          id="resetBtn"
+          class="bg-gray-400 text-white px-4 py-1 rounded hover:bg-gray-500"
+        >
+          Reset
+        </button>
+      </form>
+      <div
+        id="usersContainer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      ></div>
+    </div>
+    <script>
+      const apiUrl = "http://localhost:3000/api";
+      const usersContainer = document.getElementById("usersContainer");
+      const filterForm = document.getElementById("filterForm");
+      const resetBtn = document.getElementById("resetBtn");
+
+      function createUserCard(user) {
+        return `
+          <div class="bg-white rounded shadow p-4">
+            <h2 class="text-lg font-semibold">${user.name}</h2>
+            <p class="text-gray-600">City: ${user.city}</p>
+            <p class="text-gray-600">Age: ${user.age}</p>
+            <p class="text-gray-600">Interests: <span class="italic">${user.interests.join(
+              ", "
+            )}</span></p>
+          </div>
+        `;
+      }
+
+      function fetchUsers(params = {}) {
+        let url = apiUrl;
+        const query = Object.entries(params)
+          .filter(([_, v]) => v)
+          .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+          .join("&");
+        if (query) url += "?" + query;
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            usersContainer.innerHTML = data.length
+              ? data.map(createUserCard).join("")
+              : '<div class="col-span-full text-center text-gray-500">No users found.</div>';
+          })
+          .catch(() => {
+            usersContainer.innerHTML =
+              '<div class="col-span-full text-center text-red-500">Failed to load users.</div>';
+          });
+      }
+
+      filterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const params = {
+          name: document.getElementById("name").value.trim(),
+          city: document.getElementById("city").value.trim(),
+          age: document.getElementById("age").value.trim(),
+          interest: document
+            .getElementById("interest")
+            .value.trim()
+            .toLowerCase(),
+        };
+        fetchUsers(params);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        filterForm.reset();
+        fetchUsers();
+      });
+
+      fetchUsers();
+    </script>
+  </body>
+</html>
