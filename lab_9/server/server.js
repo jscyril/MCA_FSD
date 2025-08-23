@@ -28,6 +28,11 @@ const db = mysql.createConnection({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "social_network",
+  port: process.env.DB_PORT || 3306,
+  ssl:
+    process.env.DB_HOST && process.env.DB_HOST.includes("aivencloud.com")
+      ? { rejectUnauthorized: false }
+      : false,
 });
 
 db.connect((err) => {
