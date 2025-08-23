@@ -1,10 +1,19 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router";
 import Register from "./components/Register";
 import UsersList from "./components/UsersList";
 import EditUser from "./components/EditUser";
+import ServerLoading from "./components/ServerLoading";
 import "./App.css";
 
 function App() {
+  const [serverReady, setServerReady] = useState(false);
+
+  // If server is not ready, show loading screen
+  if (!serverReady) {
+    return <ServerLoading onServerReady={() => setServerReady(true)} />;
+  }
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
