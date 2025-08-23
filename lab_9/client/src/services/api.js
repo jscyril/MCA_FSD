@@ -1,43 +1,39 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
 export const userAPI = {
-  // Register a new user
   register: (formData) => {
-    return api.post("/users/register", formData, {
+    return api.post("/api/users/register", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
   },
 
-  // Get all users
   getAllUsers: () => {
-    return api.get("/users");
+    return api.get("/api/users");
   },
 
-  // Get user by ID
   getUserById: (id) => {
-    return api.get(`/users/${id}`);
+    return api.get(`/api/users/${id}`);
   },
 
-  // Update user
   updateUser: (id, formData) => {
-    return api.put(`/users/${id}`, formData, {
+    return api.put(`/api/users/${id}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
   },
 
-  // Delete user
   deleteUser: (id) => {
-    return api.delete(`/users/${id}`);
+    return api.delete(`/api/users/${id}`);
   },
 };
 
